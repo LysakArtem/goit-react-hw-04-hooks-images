@@ -1,0 +1,19 @@
+.imageGallery {
+  display: grid;
+  max-width: 1600px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-gap: 16px;
+  margin-top: 16px;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.question {
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 20px;
+}

@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Searchbar from './components/Searchbar/Searchbar';
+import ImageGallery from './components/ImageGallery/ImageGallery';
+import Modal from './components/Modal/Modal';
 
-function App() {
+export default function App() {
+  const [searchImages, setSearchImages] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedlargeImg, setSelectedlargeImg] = useState('');
+  const [selectedAltImg, setSelectedAltImg] = useState('');
+
+  const toggleModal = (img, alt) => {
+    setShowModal(!showModal);
+    setSelectedlargeImg(img);
+    setSelectedAltImg(alt);
+  };
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {showModal && (
+        <Modal onClose={toggleModal}>
+          <img src={selectedlargeImg} alt={selectedAltImg} />
+        </Modal>
+      )}
+      <Searchbar onSubmit={setSearchImages} />
+      <ImageGallery searchImages={searchImages} openModal={toggleModal} />
+    </>
   );
 }
-
-export default App;
